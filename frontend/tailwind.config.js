@@ -10,7 +10,8 @@ export default {
         '128': '32rem',
       },
       fontFamily: {
-        body: ['Scope One']
+        'body': ['Scope One'],
+        
       },
       textShadow: {
         'md': '3px 3px 0 #fff',
