@@ -1,4 +1,4 @@
-import logo from '../assets/foodhouse.png'
+import logo from '../assets/Logo/foodhouse.png'
 import { FaStar } from "react-icons/fa";
 import Validation from './RegisterValidation';
 import { useState } from 'react';
@@ -15,32 +15,45 @@ const Registration = () => {
     })
 
     const [errors, setErrors] = useState({})
+    const navigate = useNavigate();
 
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }))
     }
 
-    const navigate = useNavigate();
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     setErrors(Validation(values));
+    //     console.log(values);
+    //     axios.post('http://localhost:8081/Register', values)
+    //         .then(() => {
+    //             console.log("Success!");
+    //             navigate('/')
+    //         }).catch(err => console.log(err))
+    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setErrors(Validation(values));
-        console.log(values);
-        // console.log(errors.name);
-        // console.log(errors.email);
-        // console.log(errors.password);
-        // console.log(errors.confirmPassword);
-        // if (errors.name === "" && errors.email === "" && errors.password === "" && errors.confirmPassword === "") {
-        //     console.log("Something")
-            axios.post('http://localhost:8081/Register', values).then(() => {
-                console.log("Success!");
-                navigate('/')
-            }).catch(err => console.log(err))
-        // } else {
-        //     console.log("ELSE")
-        // }
-    }
-
+        
+        // ตรวจสอบข้อมูลก่อนที่จะส่งไปยังเซิร์ฟเวอร์
+        const validationErrors = Validation(values);
+        setErrors(validationErrors); // กำหนดข้อผิดพลาดให้ state
+    
+        // ตรวจสอบว่ามีข้อผิดพลาดหรือไม่
+        if (Object.keys(validationErrors).length === 0) {
+            // หากไม่มีข้อผิดพลาด ส่งข้อมูลไปยังเซิร์ฟเวอร์
+            axios.post('http://localhost:8081/Register', values)
+                .then(() => {
+                    console.log("Success!");
+                    navigate('/'); // นำไปยังหน้าอื่นเมื่อสำเร็จ
+                })
+                .catch(err => console.log(err));
+        } else {
+            console.log("Validation errors:", validationErrors);
+            // ข้อผิดพลาดจะถูกแสดงบนฟอร์ม ไม่ทำการส่งข้อมูล
+        }
+    };
+    
 
     return (
         <div className="relative flex justify-center items-center min-h-screen bg-[#67AABE] overflow-hidden">
@@ -60,10 +73,10 @@ const Registration = () => {
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 px-6 py-10 h-auto">
-                    <h2 className="text-4xl font-bold text-center mb-4">Register</h2>
+                    <h2 className="text-4xl font-bold text-center mb-4 font-body">สมัครสมาชิก</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Username</label>
+                            <label className="block text-gray-700 font-body">ชื่อ</label>
                             <input
                                 type="text"
                                 name='name'
@@ -74,7 +87,7 @@ const Registration = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700">Email</label>
+                            <label className="block text-gray-700 font-body">อีเมล</label>
                             <input
                                 type="email"
                                 name='email'
@@ -85,7 +98,7 @@ const Registration = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700">Password</label>
+                            <label className="block text-gray-700 font-body">รหัสผ่าน</label>
                             <input
                                 type="password"
                                 name='password'
@@ -96,7 +109,7 @@ const Registration = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700">Confirm Password</label>
+                            <label className="block text-gray-700 font-body">ยืนยันรหัสผ่าน</label>
                             <input
                                 type="password"
                                 name='confirmPassword'
@@ -106,17 +119,20 @@ const Registration = () => {
                             {errors.confirmPassword && <span className='text-red-500 text-sm'>{errors.confirmPassword}</span>}
                         </div>
 
-                        <button type='submit' className="w-full bg-[#FFF346] text-black font-bold py-2 rounded-lg hover:bg-yellow-300 transition duration-300">Signup</button>
+                        <button type='submit' className="w-full font-body bg-[#FFF346] text-black font-bold py-2 rounded-lg hover:bg-yellow-300 transition duration-300">
+                            สมัครสมาชิก
+                        </button>
 
                         <button
-                            className='mt-4 p w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
+                            type='submit'
+                            className='font-body mt-4 p w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
                             onClick={() => navigate('/')}
                         >
-                            Login
+                            เข้าสู่ระบบ
                         </button>
 
                         <div className='text-center mt-3'>
-                            <p className='text-xs font-bold'>Have you an account?</p>
+                            <p className='text-xs font-bold font-body'>มีบัญขีอยู่แล้วหรือไม่ ?</p>
                         </div>
                     </form>
                 </div>

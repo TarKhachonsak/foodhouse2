@@ -4,20 +4,17 @@ function validation(values) {
     const password_pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA=Z0-9]{8,}$/
 
     if(values.email === "") {
-        error.email = "Name should not be empty"
+        error.email = "กรุณาใส่อีเมล"
     } else if(!email_pattern.test(values.email)) {
-        error.password = "Email or Password Didn't match"
-    } else {
-        error.email = ""
+        error.password = "อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง"
     }
 
     if(values.password === "") {
-        error.password = "Password should not be empty"
+        error.password = "กรุณาใส่รหัสผ่านของคุณ"
     } else if(!password_pattern.test(values.password)) {
-        error.password = "Email or Password didn't match"
-    } else {
-        error.password = ""
+        error.password = "อีเมลหรือรหัสผ่านของคุณไม่ถูกต้อง"
     }
+
     return error;
 }
 

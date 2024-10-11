@@ -1,4 +1,4 @@
-import logo from '../assets/foodhouse.png';
+import logo from '../assets/Logo/foodhouse.png'
 import { FaFacebookF} from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { SiLine } from 'react-icons/si';
@@ -6,7 +6,7 @@ import { SiLine } from 'react-icons/si';
 const Footer = () => {
     return (
         <>
-            <footer className='bg-[#93B0F1] shadow-drop-top flex justify-between items-center p-6 mt-24'>
+            <footer className='bg-[#93B0F1] shadow-drop-top flex justify-between items-center p-6'>
                 <div className='flex flex-col ml-10 mt-10'>
                     <img
                         src={logo}

@@ -1,25 +1,40 @@
+import { MdNoFood } from "react-icons/md";
+import { FaGreaterThan } from 'react-icons/fa';
+import Navbar from './Navbar/Navbar'
+import Footer from './Footer'
+import Card1 from './Card/Card1';
+import Card2 from './Card/Card2';
+import Card3 from './Card/Card3';
+import RecipeCard from "./Card/RecipeCard";
+
+//หมวดหมู่
 import main from '../assets/main.png'
-import snack from '../assets/Ellipse 29.png'
-import morning from '../assets/Ellipse 20.png'
-import egg from '../assets/egg.png'
-import noodle from '../assets/noodle.png'
-import thaifood from '../assets/thaifood.png'
-import beef from '../assets/beef.png'
-import healthyfood from '../assets/healtyfood.png'
-import bergery from '../assets/bergery.png'
-import sweetfood from '../assets/sweetfood.png'
-import waterfood from '../assets/waterfood.png'
-import cupcake from '../assets/pexels-minan1398-698549.jpg'
-import yogurt from '../assets/pexels-ash-craig-122861-376464.jpg'
-import ซี่โครงลมควัน from '../assets/ซี่โครงลมควัน.png'
-import ของทอดสมัยเด็ก from '../assets/ของทอดสมัยเด็ก.png'
-import เค้กครีมขนม from '../assets/เค้กครีมขนมปัง.png'
-import แพนเค้กบลูเบอรี่ from '../assets/แพนเค้กบลูเบอรี่.png'
-import สุกี้โรล from '../assets/ชาบู.png'
-import หมูสามชั้น from '../assets/สามชั้นทอดกระเทียม.png'
-import ต้มจืดเกี๊ยวกุ้ง from '../assets/ต้มจืดเกี๊ยวกุ้ง.png'
-import ไข่ลูกเขย from '../assets/ไข่ลูกเขย.png'
-import ไข่ยัดไส้ from '../assets/ไข่ยัดไส้.png'
+import snack from '../assets/หมวดหมู่/Ellipse 29.png'
+import morning from '../assets/หมวดหมู่/Ellipse 20.png'
+import egg from '../assets/หมวดหมู่/egg.png'
+import noodle from '../assets/หมวดหมู่/noodle.png'
+import thaifood from '../assets/หมวดหมู่/thaifood.png'
+import beef from '../assets/หมวดหมู่/beef.png'
+import healthyfood from '../assets/หมวดหมู่/healtyfood.png'
+import bergery from '../assets/หมวดหมู่/bergery.png'
+import sweetfood from '../assets/หมวดหมู่/sweetfood.png'
+import waterfood from '../assets/หมวดหมู่/waterfood.png'
+
+// ยอดนิยม
+import หมี่แห้งหมูแดง from '../assets/pexels-minan1398-698549.jpg'
+import แพนเค้ก from '../assets/pexels-ash-craig-122861-376464.jpg'
+import ซี่โครงลมควัน from '../assets/หลัก1/ซี่โครง.jpg'
+import ของทอดสมัยเด็ก from '../assets/หลัก1/ของทอดสมัยเด็ก.jpg'
+import เค้กครีมขนม from '../assets/หลัก1/เค้กซอสเบอร์รี่.jpg'
+import ข้าวเหนียวมะม่วง from '../assets/หลัก1/ข้าวเหนียวมะม่วง.jpg'
+import กะเพราหมูสับ from '../assets/หลัก1/กระเพราหมูสับ.jpg'
+
+// อาหารเช้า
+import ขนมปังพร้อมไข่ดาว from '../assets/หลัก2/ขนมปังพร้อมไข่ดาว.jpg'
+import ขนมปังอะโว from '../assets/หลัก2/ขนมปังอะโว.jpg'
+import แพนเค้กชีส from '../assets/หลัก2/แพนเค้กชีส.jpg'
+import ไข่ดาวเบคอน from '../assets//หลัก2/ไข่ดาวเบคอน.jpg'
+import อาหารเช้าสไตล์ยุโรป from '../assets/หลัก2/อาหารเช้าสไตล์ยุโรป.jpg'
 import ไก่ผัดพริกเสฉวน from '../assets/ไก่ผัดพริกเสฉวน.png'
 import น้ำพริกยำกุ้งสด from '../assets/น้ำพริกยำกุ้งสด.png'
 import เห็ดเข็มทองทอดเกลือ from '../assets/เห็ดเข็มทองทอดกรอบ.png'
@@ -32,11 +47,6 @@ import อื่นๆ4 from '../assets/pexels-dacapture-18765531.jpg'
 import อื่นๆ5 from '../assets/pexels-markus-winkler-1430818-12481161.jpg'
 import อื่นๆ6 from '../assets/pexels-markus-winkler-1430818-17760129.jpg'
 import likeIcon from '../assets/iconfinder-hotfingerlikeawesometrendfire-3993858_112646 1.png'
-import { MdNoFood } from "react-icons/md";
-import { FaGreaterThan } from 'react-icons/fa';
-import Navbar from './Navbar'
-import Footer from './Footer'
-
 
 // หมวดหมู่
 const categories = [
@@ -49,29 +59,27 @@ const categories = [
   { src: healthyfood, label: "อาหารสุขภาพ" },
   { src: bergery, label: "เบเกอรี่" },
   { src: sweetfood, label: "ของหวาน" },
-  { src: waterfood, label: "เมนูน้ำ" },
+  { src: waterfood, label: "เครื่องดื่ม" },
 ];
 
 // รายการอาหารยอดนิยมตอนนี้
 const items = [
-  { src: cupcake, alt: "คัพเค้กครีมท็อปปิ้งผลไม้", title: "คัพเค้กครีมท็อปปิ้งผลไม้" },
-  { src: yogurt, alt: "โยเกิร์ตผลไม้โฮมเมด", title: "โยเกิร์ตผลไม้โฮมเมด" },
+  { src: หมี่แห้งหมูแดง, alt: "หมี่แห้งหมูแดง", title: "หมี่แห้งหมูแดง" },
+  { src: แพนเค้ก, alt: "แพนเค้กราดซอสคาราเมล", title: "แพนเค้กราดซอสคาราเมล" },
   { src: ซี่โครงลมควัน, alt: "ซี่โครงลมควันความสุขตามใจ", title: "ซี่โครงลมควัน ความสุขตามใจ" },
   { src: ของทอดสมัยเด็ก, alt: "ของทอดสมัยเด็ก", title: "ของทอดสมัยเด็ก" },
-  { src: เค้กครีมขนม, alt: "เค้กครีมขนมปังอย่างกับปุยเมฆ", title: "เค้กครีมขนมปังอย่างกับปุยเมฆ" },
-  { src: แพนเค้กบลูเบอรี่, alt: "คัพเค้กครีมท็อปปิ้งผลไม้", title: "แพนเค้กบลูเบอรี่ 12 ชั้น" },
-  { src: แพนเค้กบลูเบอรี่, alt: "คัพเค้กครีมท็อปปิ้งผลไม้", title: "แพนเค้กบลูเบอรี่ 12 ชั้น" },
+  { src: เค้กครีมขนม, alt: "เค้กครีมซอสเบอร์รี่", title: "เค้กครีมซอสเบอร์รี่" },
+  { src: ข้าวเหนียวมะม่วง, alt: "ข้าวเหนียวมะม่วง หวานฉ่ำ", title: "ข้าวเหนียวมะม่วง หวานฉ่ำ" },
+  { src: กะเพราหมูสับ, alt: "กะเพราหมูสับสูตรคุณแม่", title: "กะเพราหมูสับสูตรคุณแม่" },
 ];
 
-// รายการสูตรอาหารเมนูทำง่าย ๆ   
+// รายการสูตรอาหารเช้า  
 const items2 = [
-  { src: สุกี้โรล, alt: "สุกี้โรล", title: "สุกี้โรลง่าย ๆ" },
-  { src: หมูสามชั้น, alt: "หมูสามชั้น", title: "หมูสามชั้นทอดกระเทียม" },
-  { src: ต้มจืดเกี๊ยวกุ้ง, alt: "ต้มจืดเกี๊ยวกุ้ง", title: "ต้มจืดเกี๊ยวกุ้งหมูสับ" },
-  { src: ไข่ลูกเขย, alt: "ไข่ลูกเขย", title: "ไข่ลูกเขยง่าย ๆ ที่บ้าน" },
-  { src: ไข่ยัดไส้, alt: "ไข่ยัดไส้", title: "ไข่ยัดไส้ ไม่ใช้น้ำมัน" },
-  { src: ไข่ยัดไส้, alt: "ไข่ยัดไส้", title: "ไข่ยัดไส้ ไม่ใช้น้ำมัน" },
-  { src: ไข่ยัดไส้, alt: "ไข่ยัดไส้", title: "ไข่ยัดไส้ ไม่ใช้น้ำมัน" },
+  { src: ขนมปังพร้อมไข่ดาว, alt: "ขนมปังพร้อมไข่ดาว", title: "ขนมปังไข่ดาว" },
+  { src: ขนมปังอะโว, alt: "ขนมปังอะโว", title: "อะโวคาโด คีโต" },
+  { src: แพนเค้กชีส, alt: "แพนเค้กชีส", title: "แพนเค้กชีสหอมหวาน" },
+  { src: ไข่ดาวเบคอน, alt: "ไข่ดาวเบคอน", title: "อาหารเช้าทำง่าย ๆ ที่บ้าน" },
+  { src: อาหารเช้าสไตล์ยุโรป, alt: "อาหารเช้าสไตล์ยุโรป", title: "อาหารเช้าสไตล์ยุโรป" },
 ]
 
 const items3 = [
@@ -117,88 +125,6 @@ const recipes = [
   },
 ];
 
-// eslint-disable-next-line react/prop-types
-const Card = ({ src, alt, title }) => (
-  <div className="w-[250px] h-[350px] bg-white rounded-lg shadow-lg overflow-hidden ml-1 mr-1">
-    <div className="relative">
-      <img src={src} alt={alt} className="w-full h-[200px] object-cover" />
-      <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black via-transparent to-transparent w-full h-full opacity-75"></div>
-    </div>
-    <div className="p-4">
-      <h3 className="text-lg font-semibold overflow-hidden whitespace-nowrap text-ellipsis max-w-[170px] font-body">
-        {title}
-      </h3>
-      <p className='text-gray-400'>Nongtra ict</p>
-      <div className="mt-4">
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-600 transition duration-300 font-body">
-          ดูเพิ่มเติม
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-// eslint-disable-next-line react/prop-types
-const Card2 = ({ src, alt, title }) => (
-  <div className="w-[250px] h-[350px] bg-white rounded-lg shadow-lg overflow-hidden ml-1 mr-1">
-    <div className="relative">
-      <img src={src} alt={alt} className="w-full h-[200px] object-cover" />
-      <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black via-transparent to-transparent w-full h-full opacity-75"></div>
-    </div>
-    <div className="p-4">
-      <h3 className="text-lg font-semibold overflow-hidden whitespace-nowrap text-ellipsis max-w-[170px] font-body">
-        {title}
-      </h3>
-      <p className='text-gray-400'>Nongtra ict</p>
-      <div className="mt-4">
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-600 transition duration-300 font-body">
-          ดูเพิ่มเติม
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-
-// eslint-disable-next-line react/prop-types
-const Card3 = ({ src, alt, title }) => (
-  <div className="w-[250px] h-[350px] bg-white rounded-lg shadow-lg overflow-hidden ml-1 mr-1">
-    <div className="relative">
-      <img src={src} alt={alt} className="w-full h-[200px] object-cover" />
-      <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black via-transparent to-transparent w-full h-full opacity-75"></div>
-    </div>
-    <div className="p-4">
-      <h3 className="text-lg font-semibold overflow-hidden whitespace-nowrap text-ellipsis max-w-[170px] font-body">
-        {title}
-      </h3>
-      <p className='text-gray-400'>Nongtra ict</p>
-      <div className="mt-4">
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-600 transition duration-300 font-body">
-          ดูเพิ่มเติม
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-// eslint-disable-next-line react/prop-types
-const RecipeCard = ({ imgSrc, title, description }) => (
-  <div className="max-w-sm rounded-lg overflow-hidden mb-12">
-    <img
-      src={imgSrc}
-      alt={title}
-      className="w-[380px] h-[250px] object-cover rounded-b-lg"
-    />
-    <div className="pt-4">
-      <h3 className="text-xl font-bold mb-2 font-body">{title}</h3>
-      <p className="text-gray-400 mb-4 font-body">{description}</p>
-      <button className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 font-body">
-        ดูเพิ่มเติม
-      </button>
-    </div>
-  </div>
-);
-
 const Home = () => {
   return (
     <div className='bg-custom-gradient'>
@@ -240,7 +166,7 @@ const Home = () => {
       <div className="snap-x overflow-x-auto flex mx-28 gap-4">
         <div className='snap-start flex gap-6 pb-5'>
           {items.map((item, index) => (
-            <Card key={index} {...item} />
+            <Card1 key={index} {...item} />
           ))}
         </div>
       </div>
@@ -248,8 +174,8 @@ const Home = () => {
       {/* แนะนำสูตรอาหารทำง่าย ๆ */}
       <div className='flex justify-start items-center mt-24 pb-4 ml-24 w-[26%]'>
         <div className='flex items-center w-full group'>
-          <p className="text-3xl font-body group-hover:cursor-pointer ml-5">แนะนำสูตรอาหารทำง่าย ๆ</p>
-          <FaGreaterThan className='text-3xl transition-transform duration-300 group-hover:translate-x-2 group-hover:cursor-pointer' />
+          <p className="text-3xl font-body group-hover:cursor-pointer ml-5">แนะนำสูตรอาหารเช้า</p>
+          <FaGreaterThan className='ml-2 text-3xl transition-transform duration-300 group-hover:translate-x-2 group-hover:cursor-pointer' />
         </div>
       </div>
       <div className="snap-x overflow-x-auto flex mx-28 gap-4">
@@ -277,7 +203,7 @@ const Home = () => {
 
       {/* แนะนำสูตรอาหารอื่น ๆ */}
       <p className='text-3xl ml-28 mt-24 font-body pb-4'>สูตรอาหารอื่น ๆ</p>
-      <div className="grid grid-cols-3 mx-[80px] gap-4">
+      <div className="grid grid-cols-3 mx-[80px] gap-4 mb-24">
         {recipes.map((recipe, index) => (
           <RecipeCard
             key={index}

@@ -22,7 +22,8 @@ export default {
         'drop-top': '0 -5px 6px rgba(0, 0, 0, 0.2)'
       },
       backgroundImage:{
-        'custom-gradient': 'linear-gradient(to bottom, #FFFFFF 42%, #FCF5DD 90%, #FEEDB4 100%)'
+        'custom-gradient': 'linear-gradient(to bottom, #FFFFFF 42%, #FCF5DD 90%, #FEEDB4 100%)',
+        'custom-gradient2': 'linear-gradient(to bottom, #FFAC82 0%, #FAFAFA 77%, #FAFAFA 100%)'
       },
       scale: {
         '350': '3.50'

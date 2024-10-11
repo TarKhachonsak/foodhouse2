@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../assets/foodhouse.png'
+import logo from '../assets/Logo/foodhouse.png';
 import { FaStar } from "react-icons/fa";
 import Validation from './LoginValidation';
 import { useNavigate } from 'react-router-dom';
@@ -11,26 +11,56 @@ const Login = () => {
     const [values, setValues] = useState({
         email: '',
         password: ''
-    })
+    });
 
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
 
     const handleInput = (event) => {
-        setValues(prev => ({ ...prev, [event.target.name]: [event.target.value] }))
-    }
+        setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
+    };
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     setErrors(Validation(values));
+
+    //     axios.post('http://localhost:8081/login', values)
+    //         .then(res => {
+    //             if (res.data.message === "Success") { // ตรวจสอบว่าเป็น res.data.message แทน res.data
+    //                 navigate('/Home');
+    //                 localStorage.setItem('userId', res.data.userId); // ส่ง userId ไปยังหน้า ProfilePage
+    //             } else {
+    //                 alert("No record existed");
+    //             }
+    //         }).catch(err => console.log(err));
+    // };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setErrors(Validation(values));
-        axios.post('http://localhost:8081/login', values)
-            .then(res => {
-                if(res.data === "Success"){
-                    navigate('/Home')
-                }else {
-                    alert("No record existed");
-                }
-            }).catch(err => console.log(err))
-    }
+    
+        // เรียกใช้ Validation เพื่อดึงข้อผิดพลาด
+        const validationErrors = Validation(values);
+        setErrors(validationErrors);
+    
+        // ถ้าไม่มีข้อผิดพลาด ให้ส่งข้อมูลไปที่เซิร์ฟเวอร์
+        if (Object.keys(validationErrors).length === 0) {
+            axios.post('http://localhost:8081/login', values)
+                .then(res => {
+                    if (res.data.message === "Success") {
+                        // นำผู้ใช้ไปที่หน้า Home
+                        navigate('/Home');
+                        // เก็บ userId ใน localStorage
+                        localStorage.setItem('userId', res.data.userId);
+                    } else {
+                        alert("No record existed");
+                    }
+                })
+                .catch(err => console.log(err));
+        } else {
+            console.log("Validation failed:", validationErrors);
+        }
+    };
+    console.log(values)
+    
 
     return (
         <div className="relative flex justify-center items-center min-h-screen bg-[#67AABE] overflow-hidden">
@@ -50,14 +80,15 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 px-6 py-10">
-                    <h2 className="text-4xl font-bold text-center mb-4">Login</h2>
+                    <h2 className="text-4xl font-bold text-center mb-4 font-body">เข้าสู่ระบบ</h2>
 
-                    <form action='' onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Email</label>
+                            <label className="block text-gray-700 font-body">อีเมล</label>
                             <input
                                 type="email"
                                 name='email'
+                                value={values.email} // เพิ่ม value เพื่อควบคุม state
                                 onChange={handleInput}
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
@@ -65,32 +96,37 @@ const Login = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700">Password</label>
+                            <label className="block text-gray-700 font-body">รหัสผ่าน</label>
                             <input
                                 type="password"
                                 name='password'
+                                value={values.password} // เพิ่ม value เพื่อควบคุม state
                                 onChange={handleInput}
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
                             {errors.password && <span className='text-red-500'>{errors.password}</span>}
-
                         </div>
 
                         <div className='mb-4 text-right'>
-                            <p className='text-xs font-bold hover:underline cursor-pointer'>Forget Password ?</p>
+                            <p className='text-xs font-bold hover:underline cursor-pointer font-body'>ลืมรหัสผ่าน ?</p>
                         </div>
 
-                        <button type='submit' className="w-full bg-[#FFF346] text-black font-bold py-2 rounded-lg hover:bg-yellow-300 transition duration-300">Login</button>
+                        <button
+                            type='submit'
+                            className="w-full font-body bg-[#FFF346] text-black font-bold py-2 rounded-lg hover:bg-yellow-300 transition duration-300"
+                        >
+                            เข้าสู่ระบบ
+                        </button>
 
                         <button
-                            className='mt-4 w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
+                            className='font-body mt-4 w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
                             onClick={() => navigate('/Register')}
                         >
-                            Register
+                            สมัครสมาชิก
                         </button>
 
                         <div className='text-center mt-3'>
-                            <p className='text-xs font-bold'>Have you never been a member yet?</p>
+                            <p className='text-xs font-bold font-body'>คุณยังไม่มีบัญชี ?</p>
                         </div>
                     </form>
                 </div>
@@ -99,4 +135,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
