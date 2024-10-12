@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import logo from '../assets/Logo/foodhouse.png';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaEye, FaEyeSlash } from "react-icons/fa";
+
 import Validation from './LoginValidation';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
     const navigate = useNavigate();
-
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(prevState => !prevState);
+    };
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -17,6 +21,9 @@ const Login = () => {
 
     const handleInput = (event) => {
         setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
+
+        const updatedErrors = Validation({ ...values, [event.target.name]: event.target.value });
+        setErrors(updatedErrors); // อัปเดตข้อผิดพลาดตามค่าใหม่
     };
 
     // const handleSubmit = (event) => {
@@ -75,8 +82,8 @@ const Login = () => {
                         <div>
                             <FaStar className='text-[#FBB9B9] w-96 h-5 relative left-40 bottom-3' />
                         </div>
-                        <h2 className="text-6xl font-bold text-shadow">Welcome !</h2>
-                        <p className="text-center mb-4 text-sm">Log in to enjoy the new Food house and menu recipes.</p>
+                        <h2 className="text-6xl font-bold text-shadow font-secular">Welcome !</h2>
+                        <p className="text-center mb-4 text-sm font-secular">Log in to enjoy the new Food house and menu recipes.</p>
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 px-6 py-10">
@@ -92,19 +99,25 @@ const Login = () => {
                                 onChange={handleInput}
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
-                            {errors.email && <span className='text-red-500'>{errors.email}</span>}
+                            {errors.email && <span className='text-red-500 font-body'>{errors.email}</span>}
                         </div>
 
-                        <div className="mb-4">
+                        <div className="mb-4 relative">
                             <label className="block text-gray-700 font-body">รหัสผ่าน</label>
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 name='password'
                                 value={values.password} // เพิ่ม value เพื่อควบคุม state
                                 onChange={handleInput}
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                             />
-                            {errors.password && <span className='text-red-500'>{errors.password}</span>}
+                            <span
+                                className="absolute right-3 top-9 cursor-pointer"
+                                onClick={togglePasswordVisibility}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                            {errors.password && <span className='text-red-500 font-body'>{errors.password}</span>}
                         </div>
 
                         <div className='mb-4 text-right'>

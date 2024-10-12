@@ -11,7 +11,7 @@ function validation(values) {
         error.email = "กรุณากรอกอีเมล";
     } else if (!email_pattern.test(values.email)) {
         error.email = "อีเมลไม่ถูกต้อง";
-    }
+    } 
 
     if (values.password === "") {
         error.password = "กรุณากรอกรหัสผ่าน";
@@ -23,7 +23,7 @@ function validation(values) {
     if (values.confirmPassword === "") {
         error.confirmPassword = "กรุณากรอกยืนยันรหัสผ่าน";
     } else if (values.confirmPassword !== values.password) {
-        error.confirmPassword = "ยืนยันรหัสผ่านไม่ตรงกัน";
+        error.confirmPassword = "รหัสผ่านไม่ตรงกัน";
     }
 
     return error;

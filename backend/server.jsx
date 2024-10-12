@@ -133,7 +133,7 @@ app.post('/Register', (req, res) => {
         if (err) {
             console.error("Error inserting data: ", err);
             return res.status(500).json({ message: "Database error" });
-        }
+        } 
         return res.json({ message: "Registration successful", data });
     });
 });

@@ -11,6 +11,7 @@ export default {
       },
       fontFamily: {
         'body': ['Prompt'],
+        'secular': ["Secular One"],
         
       },
       textShadow: {
