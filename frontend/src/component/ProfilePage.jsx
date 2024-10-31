@@ -60,6 +60,17 @@ const ProfilePage = () => {
   //ส่ง data
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !recipeData.recipe_name || 
+      !image || 
+      !recipeData.description || 
+      !recipeData.ingredient || 
+      !recipeData.how_to_cook || 
+      !selectedCategory
+  ) {
+      alert('เพิ่มเมนูไม่สำเร็จ! โปรดกรอกข้อมูลให้ครบ');
+      return;
+  }
     const formData = new FormData();
     formData.append('recipe_name', recipeData.recipe_name);
     formData.append('Image', image);

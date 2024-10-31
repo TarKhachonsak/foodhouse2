@@ -70,7 +70,6 @@ const EditRecipe = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('recipe_name', recipeData.recipe_name);
-    formData.append('Image', image);
     formData.append('description', recipeData.description);
     formData.append('ingredient', recipeData.ingredient);
     formData.append('how_to_cook', recipeData.how_to_cook)
@@ -82,16 +81,19 @@ const EditRecipe = () => {
       formData.append('existingImage', image); // ใช้รูปภาพเดิมที่มาจากฐานข้อมูล
     }
 
-    await axios.put('http://localhost:8081/EditRecipe/' + id, formData)
-      .then(res => {
-        console.log(res)
-        alert('แก้ไขเมนูสำเร็จแล้ว!');
-        navigate(`/RecipeDetail/${id}`);
-      })
-      .catch(err => {
-        console.log(err)
-        alert('แก้ไขเมนูไม่สำเร็จ!');
+    try {
+      const res = await axios.put(`http://localhost:8081/EditRecipe/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'  // กำหนดประเภทข้อมูลเป็น multipart/form-data
+        }
       });
+      console.log(res.data);
+      alert('แก้ไขเมนูสำเร็จแล้ว!');
+      navigate(`/RecipeDetail/${id}`);
+    } catch (err) {
+      console.log(err);
+      alert('แก้ไขเมนูไม่สำเร็จ!');
+    }
   }
   console.log("category_id = " + selectedCategory)
   console.log("Image = " + image)
@@ -137,7 +139,7 @@ const EditRecipe = () => {
                 <label className="block  text-gray-700 font-body">รูปภาพ</label>
                 <input
                   type="file"
-                  name="picture"
+                  name="Image"
                   onChange={handleImageChange}
                   className="bg-white w-[50%] border border-gray-300 p-2 rounded"
                 />

@@ -54,7 +54,6 @@ const Recipe = () => {
   };
   
   
-
   return (
     <div>
       <Navbar2 />

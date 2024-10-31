@@ -11,6 +11,7 @@ import UserReviews from './component/UserReviews.jsx'
 import Saved from './component/Saved.jsx'
 import RecipeDetail from './component/RecipeDetail.jsx'
 import EditRecipe from './component/EditRecipe.jsx'
+// import SearchRecipes from './component/SearchRecipes.jsx'
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
   {
     path: '/EditRecipe/:id',
     element: <EditRecipe />
-  }
+  },
+  // {
+  //   path: '/SearchRecipes/:id',
+  //   element: <SearchRecipes />
+  // }
   
 ])
 

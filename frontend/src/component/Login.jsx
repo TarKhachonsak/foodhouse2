@@ -52,11 +52,13 @@ const Login = () => {
         if (Object.keys(validationErrors).length === 0) {
             axios.post('http://localhost:8081/login', values)
                 .then(res => {
+                    // console.log("res data = " + res.data);
                     if (res.data.message === "Success") {
                         // นำผู้ใช้ไปที่หน้า Home
                         navigate('/Home');
                         // เก็บ userId ใน localStorage
                         localStorage.setItem('userId', res.data.userId);
+                        alert("เข้าสู่ระบบสำเร็จ!")
                     } else {
                         alert("No record existed");
                     }
@@ -64,6 +66,7 @@ const Login = () => {
                 .catch(err => console.log(err));
         } else {
             console.log("Validation failed:", validationErrors);
+            alert("เข้าสู่ระบบไม่สำเร็จ!")
         }
     };
     console.log(values)
@@ -115,7 +118,7 @@ const Login = () => {
                                 className="absolute right-3 top-9 cursor-pointer"
                                 onClick={togglePasswordVisibility}
                             >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
                             </span>
                             {errors.password && <span className='text-red-500 font-body'>{errors.password}</span>}
                         </div>
@@ -134,6 +137,7 @@ const Login = () => {
                         <button
                             className='font-body mt-4 w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
                             onClick={() => navigate('/Register')}
+                            type="button"
                         >
                             สมัครสมาชิก
                         </button>

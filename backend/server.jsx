@@ -3,6 +3,7 @@ const multer = require('multer');
 const mysql = require("mysql");
 const cors = require("cors");
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -86,6 +87,7 @@ app.put('/EditRecipe/:id', upload.single('Image'), (req, res) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
+        console.log("รูปใหม่ = " + imageFile)
         res.json(result);
     })
 })
@@ -108,7 +110,6 @@ app.delete('/Delete/:id', (req, res) => {
     });
   });
   
-
 app.get('/api/categories', (req, res) => {
     const sql = "SELECT * FROM categories";
     db.query(sql, (err, data) => {

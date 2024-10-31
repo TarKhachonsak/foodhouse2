@@ -59,11 +59,13 @@ const Registration = () => {
                 .then(() => {
                     console.log("Success!");
                     navigate('/'); // นำไปยังหน้าอื่นเมื่อสำเร็จ
+                    alert("สมัครสมาชิกสำเร็จ!")
                 })
                 .catch(err => console.log(err));
         } else {
             console.log("Validation errors:", validationErrors);
             // ข้อผิดพลาดจะถูกแสดงบนฟอร์ม ไม่ทำการส่งข้อมูล
+            alert("สมัครสมาชิกไม่สำเร็จ!")
         }
     };
 
@@ -122,7 +124,7 @@ const Registration = () => {
                                 className="absolute right-3 top-9 cursor-pointer"
                                 onClick={togglePasswordVisibility}
                             >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
                             </span>
                             {errors.password && <span className='text-red-500 text-sm font-body'>{errors.password}</span>}
                         </div>
@@ -130,7 +132,7 @@ const Registration = () => {
                         <div className="mb-4 relative">
                             <label className="block text-gray-700 font-body">ยืนยันรหัสผ่าน</label>
                             <input
-                                 type={showConfirmPassword ? "text" : "password"}
+                                type={showConfirmPassword ? "text" : "password"}
                                 name='confirmPassword'
                                 onChange={handleInput}
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
@@ -139,7 +141,7 @@ const Registration = () => {
                                 className="absolute right-3 top-9 cursor-pointer"
                                 onClick={toggleConfirmPasswordVisibility}
                             >
-                                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                             </span>
                             {errors.confirmPassword && <span className='text-red-500 text-sm font-body'>{errors.confirmPassword}</span>}
                         </div>
@@ -149,7 +151,7 @@ const Registration = () => {
                         </button>
 
                         <button
-                            type='submit'
+                            type='button'
                             className='font-body mt-4 p w-full bg-[#5CD9FF] hover:bg-[#4AC4E6] text-black font-bold py-2 rounded-lg transition duration-300'
                             onClick={() => navigate('/')}
                         >
